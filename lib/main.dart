@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:walley/firebase_options.dart';
 import 'package:walley/gobal.dart';
 import 'package:walley/impl/auth/login_screen.dart';
+import 'package:walley/impl/web/web_root.dart';
 import 'package:walley/util/color_util.dart';
 import 'package:walley/util/user_defaults_util.dart';
 
@@ -38,7 +42,7 @@ class Walley extends StatelessWidget {
         fontFamily: "SF Pro Display",
       ),
       themeMode: ThemeMode.system,
-      home: const LoginScreen(),
+      home: kIsWeb ? const WebRoot() : const LoginScreen(),
       debugShowCheckedModeBanner: false,
       navigatorKey: GlobalVariable.navState,
     );

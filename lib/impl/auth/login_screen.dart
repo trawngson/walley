@@ -20,15 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  final image = SvgPicture.asset(
-    'assets/transparent_logo.svg',
-    semanticsLabel: 'Transparent Logo',
-  );
-  final textLogo = SvgPicture.asset(
-    'assets/text_logo.svg',
-    semanticsLabel: 'Text Logo',
-  );
-
   final DimLoadingDialog loadingDialog = DimLoadingDialog(
     GlobalVariable.navState.currentState!.context,
     blur: 0,
@@ -247,7 +238,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Expanded(
                       flex: 4,
-                      child: image,
+                      child: GlobalVariable.image,
                     ),
                     Expanded(
                       flex: 7,
@@ -267,7 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: textLogo,
+                      child: GlobalVariable.textLogo,
                     ),
                     Expanded(
                       flex: 7,

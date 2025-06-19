@@ -8,7 +8,7 @@ enum SpendingCategory {
   Health,
   Education,
   Other,
-  Uncategorized,
+  Uncategorized
 }
 
 extension SpendingCategoryExtension on SpendingCategory {
