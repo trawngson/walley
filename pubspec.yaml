@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   iconsax: ^0.0.8
   flutter_launcher_icons: ^0.13.1
-  intl: ^0.19.0
+  intl: ^0.20.2
   firebase_core: ^3.3.0
   firebase_auth: ^5.1.3
   firebase_ui_auth: ^1.15.0
