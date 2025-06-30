@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:motion/motion.dart';
 import 'package:walley/firebase_options.dart';
-import 'package:walley/gobal.dart';
+import 'package:walley/global_variable.dart';
 import 'package:walley/impl/auth/login_screen.dart';
 import 'package:walley/impl/web/web_root.dart';
 import 'package:walley/util/color_util.dart';
@@ -16,6 +17,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await UserDefaultsUtil.initialize();
+  await Motion.instance.initialize();
 
   runApp(const Walley());
 }

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:walley/gobal.dart';
+import 'package:walley/global_variable.dart';
 import 'package:walley/impl/auth/register_screen.dart';
 import 'package:walley/root_page.dart';
 import 'package:walley/util/navigation_util.dart';
