@@ -62,8 +62,7 @@ class TotalSpentWidget extends StatelessWidget {
                             .preferences!
                             .getString("totalSpentYesterdayComparisonValue");
 
-                        if (cachedComparisonValue == null ||
-                            cachedComparisonPositive == null ||
+                        if (cachedComparisonPositive == null ||
                             cachedComparisonValue == "0%") {
                           return const SizedBox
                               .shrink(); // Returns empty widget if there is no data recorded in cache

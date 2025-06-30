@@ -47,3 +47,5 @@ app.*.map.json
 
 # Signing files
 key.properties
+
+.vscode/
