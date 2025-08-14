@@ -167,38 +167,35 @@ class WebRoot extends StatelessWidget {
                       ],
                     ),
                     Center(
-                      child: Image.asset("assets/bee-lo.png"),
+                      child: Image.asset("assets/bee-llo.png"),
                     ),
                   ],
                 ),
                 Container(
                   width: double.infinity,
                   color: const Color.fromARGB(255, 217, 217, 217),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 120, horizontal: 40),
+                  padding: const EdgeInsets.only(
+                    bottom: 120,
+                    top: 40,
+                    left: 40,
+                    right: 40,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        height: 150,
+                        child: Stack(
                           children: [
-                            SvgPicture.asset(
-                              'assets/transparent_logo.svg',
-                              semanticsLabel: 'Walley Logo',
-                              width: 40,
+                            Positioned(
+                              left: 0,
+                              child: SvgPicture.asset(
+                                'assets/text_logo.svg',
+                                semanticsLabel: 'Text Logo',
+                                height: 150,
+                              ),
                             ),
-                            const SizedBox(
-                              width: 12,
-                            ),
-                            SvgPicture.asset(
-                              'assets/text_logo.svg',
-                              semanticsLabel: 'Text Logo',
-                              width: 50,
-                            )
                           ],
                         ),
                       ),
@@ -212,7 +209,7 @@ class WebRoot extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width / 2 + 40 + 10,
+                        width: MediaQuery.of(context).size.width / 2 - 40,
                         child: const Text(
                           'Take the next step toward mastering your finances. Join us and explore tools, tips, and a buzzing community focused on building better money habits.',
                           softWrap: true,
@@ -224,19 +221,15 @@ class WebRoot extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 12,
+                        height: 35,
                       ),
                       const Row(
                         children: [
-                          Icon(Icons.facebook_rounded, size: 30),
+                          Text("Terms of service"),
                           SizedBox(
-                            width: 5,
+                            width: 12,
                           ),
-                          Icon(Icons.mail_rounded, size: 30),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(Icons.phone_in_talk_rounded, size: 30)
+                          Text("Privacy policy"),
                         ],
                       ),
                     ],
