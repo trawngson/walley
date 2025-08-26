@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:walley/impl/ui/home/home_page.dart';
 import 'package:walley/impl/ui/lessons/lessons_page.dart';
@@ -51,4 +52,19 @@ class WalleyNavigationBar extends StatelessWidget {
   bool isHomeScreen() => _currentIndex == 0;
   bool isLogScreen() => _currentIndex == 1;
   bool isLessonsScreen() => _currentIndex == 2;
+
+  static List<NavigationRailDestination> railDestinations() => const [
+        NavigationRailDestination(
+          icon: Icon(Iconsax.wallet_1),
+          label: Text('Home'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Iconsax.add),
+          label: Text('Entry'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Iconsax.book_square),
+          label: Text('Lessons'),
+        ),
+      ];
 }

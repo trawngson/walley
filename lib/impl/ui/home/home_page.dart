@@ -5,6 +5,8 @@ import 'package:walley/impl/ui/home/impl/balance_widget.dart';
 import 'package:walley/impl/ui/home/impl/total_spent_widget.dart';
 import 'package:walley/util/time_util.dart';
 import 'package:walley/util/user_util.dart';
+import 'impl/lesson_progress_widget.dart';
+import 'impl/financial_tracker_widget.dart';
 
 class HomePage extends StatefulWidget implements AbstractWalleyPage {
   const HomePage({super.key});
@@ -19,10 +21,11 @@ class HomePage extends StatefulWidget implements AbstractWalleyPage {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final horizontalLayout = width > 1100; // wide screens show cards side by side
     return SingleChildScrollView(
       padding: const EdgeInsets.all(15),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
@@ -56,21 +59,25 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 15),
-          Container(
-            constraints: const BoxConstraints(maxHeight: 100),
-            // ignore: prefer_const_constructors
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
+          // Responsive financial summary cards
+          if (horizontalLayout)
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
+                Expanded(child: BalanceWidget()),
+                SizedBox(width: 15),
+                Expanded(child: TotalSpentWidget()),
+              ],
+            )
+          else
+            const Column(
+              children: [
                 BalanceWidget(),
-                SizedBox(
-                  width: 15,
-                ),
+                SizedBox(height: 15),
                 TotalSpentWidget(),
               ],
             ),
-          ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 25),
           const Row(
             children: [
               /*Expanded(
@@ -162,18 +169,8 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 15,
           ),
-          Container(
-            constraints: const BoxConstraints(maxHeight: 200),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Theme.of(context).hoverColor,
-              borderRadius: const BorderRadius.all(Radius.circular(12)),
-            ),
-            child: const Placeholder(),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
+          const LessonProgressWidget(),
+          const SizedBox(height: 20),
           Row(
             children: [
               const SizedBox(
@@ -217,15 +214,8 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 15,
           ),
-          Container(
-            constraints: const BoxConstraints(maxHeight: 200),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Theme.of(context).hoverColor,
-              borderRadius: const BorderRadius.all(Radius.circular(12)),
-            ),
-            child: const Placeholder(),
-          ),
+          const FinancialTrackerWidget(),
+          const SizedBox(height: 20),
         ],
       ),
     );

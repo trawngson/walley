@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:walley/impl/web/authentication_popup.dart';
 import 'package:walley/util/interface_util.dart';
 
 class WebAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -22,7 +21,14 @@ class WebAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         actions: [
           ElevatedButton(
-            onPressed: () => {},
+            onPressed: () => {
+              LoginPopup.show(
+                context,
+                "Welcome back",
+                "Sign in to continue to Walley",
+                true,
+              )
+            },
             style: ButtonStyle(
               shape: WidgetStateProperty.all(
                 RoundedRectangleBorder(

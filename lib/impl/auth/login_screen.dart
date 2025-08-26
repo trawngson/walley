@@ -1,7 +1,6 @@
 import 'package:dim_loading_dialog/dim_loading_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:walley/global_variable.dart';
 import 'package:walley/impl/auth/register_screen.dart';
@@ -164,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
           case 'wrong-password':
           case "invalid-credential":
             return 'The password you entered is incorrect. Please try again.';
-          case "user-disabled": // test 123456
+          case "user-disabled":
             return "The account you are trying to log into has been disabled.";
           case "user-not-found":
             return "This email does not belong to an account.";

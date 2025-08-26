@@ -1,240 +1,242 @@
 import 'package:flutter/material.dart';
-import 'package:walley/impl/ui/lessons/impl/lesson.dart';
-import 'package:walley/impl/ui/lessons/impl/ui/lesson_sliverappbar.dart';
+import 'package:walley/util/user_util.dart';
 
-class Unit1Lesson1 extends StatelessWidget implements Lesson {
-  @override
-  int lessonNumber() => 1;
-
-  @override
-  int unitNumber() => 1;
-
-  @override
-  String lessonName() => "Introduction to Economics";
-
-  @override
-  lessonDescription() => "Begin with the basics";
-
+class Unit1Lesson1 extends StatelessWidget {
   const Unit1Lesson1({super.key});
+  static const int lessonNumber = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return _ScaffoldLesson(
+      title: 'UNIT 1 · LESSON 1',
+      headline: 'Flagship Concepts',
+      color: Colors.redAccent,
+      lessonNumber: lessonNumber,
+      children: const [
+        _Paragraph(
+            'Welcome! This first lesson establishes the mental models you will reuse everywhere: cash flow, margin, and intentional allocation.'),
+        _BulletList([
+          'Money = resource that buys time & optionality',
+          'Cash Flow = recurring pattern, not isolated events',
+          'Surplus must be deliberately directed (Save, Invest, Build)',
+          'Small consistent habits beat irregular intensity',
+        ]),
+        _TipCard('Reflect',
+            'List three money decisions from last week. Would Future-You vote to repeat them?')
+      ],
+    );
+  }
+}
+
+// Re-usable lesson scaffold (mirrors design of other Unit lessons)
+class _ScaffoldLesson extends StatelessWidget {
+  final String title;
+  final String headline;
+  final Color color;
+  final int lessonNumber;
+  final List<Widget> children;
+  const _ScaffoldLesson(
+      {required this.title,
+      required this.headline,
+      required this.color,
+      required this.lessonNumber,
+      required this.children});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          LessonSliverAppBar(
-            lesson: this,
-            imageUrl:
-                "https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "The ultimate economic problem is that our wants are unlimited and resources are limited, making them scarce.\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Text(
-                    "Therefore, the field of economics is dedicated to studying how a society manages its scarce resources to fulfil the needs and wants of its people—efficient use of scarce resources to achieve the maximum satisfaction of economic wants.\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Text(
-                    "Since there is not enough resources to produce all the goods and services that people want (Scarcity), we must decide what we will have and what we must forgo (Choices).\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Text(
-                    "Opportunity cost",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final wide = constraints.maxWidth > 900;
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  backgroundColor: color.withOpacity(0.1),
+                  pinned: true,
+                  automaticallyImplyLeading: true,
+                  title: Text(headline,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600)),
+                  actions: [
+                    IconButton(
+                      tooltip: 'Mark Complete',
+                      onPressed: () async {
+                        await UserUtil.updateLessonProgressIfCurrent(
+                            lessonNumber);
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Progress updated')),
+                          );
+                        }
+                      },
+                      icon: const Icon(Icons.check_circle_outline),
+                    )
+                  ],
+                ),
+                SliverToBoxAdapter(
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 400),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: wide ? 80 : 20,
+                      vertical: 30,
                     ),
-                  ),
-                  const Text(
-                    "The opportunity cost of an item is what you give up to obtain that item. It is the next best alternative forgone.\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Text(
-                    "Economists seek solutions by addressing these 3 basic questions:\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "1. What to produce?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "What types of goods and services does society choose to produce?\n",
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "2. How to produce?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "What sort of technology can be used to produce the goods and services?\n",
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      "3. For whom to produce?",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      "How are the goods and services distributed among people?\n",
-                    ),
-                  ),
-                  const Text(
-                    "An economic system is a system where societies or governments produce and allocate available products, services, and resources over a nation or geographic area. Economic systems differ as to:\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "- Who owns the factors of production (Lands, Labour, Capital, Entrepreneurship).\n",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "- The method used to coordinate and direct economic activities.\n",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    textAlign: TextAlign.justify,
-                    "Let's look at some examples:\n",
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "- Market economy: the private ownership of resources and the use of market and prices to coordinate and direct economic activities.\n",
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "- Command economy: resources are owned by the government and economic decision making occurs through a central economic plan.\n",
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      "- Mixed economy: the combination of features of market and command economies. The government and the private sector jointly solve economic problems.\n",
-                    ),
-                  ),
-                  const Text(
-                    "Economists use models to simplify, analyze, and predict human behavior. How sensitive to price consumers are with a good (Elasticity), supply and demand graphs,... Models simplify and single out external details to allow us to see what is truly important - showing relationships among economic variables. Models include graphs and mathematical models.\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Text(
-                    "In their use of models, economists usually make the assumption, when analyzing the effect of a particular change on a market or on a nation’s economy, that all else is held constant. The term we use for “all else equal” is the Latin expression, ceteris paribus.\n",
-                    textAlign: TextAlign.justify,
-                  ),
-                  const Text(
-                    textAlign: TextAlign.justify,
-                    "We can use either positive or normative analysis when thinking about economic problems. Positive analysis is objective, fact-based, and cause-and-effect thinking about problems. When economists disagree it is typically due to different normative analysis. When using normative analysis, the focus is on what should happen or how desirable one action is compared to a different action.\n",
-                  ),
-                  const Text(
-                    textAlign: TextAlign.justify,
-                    "The study of economics is sometimes broken down into two disciplines:\n",
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      "Microeconomics",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "Studies the behaviour of individual economic units such as consumers, firms, investors, and workers ... as well as individual markets.\n",
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      "Macroeconomics",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      textAlign: TextAlign.justify,
-                      "Studies the aggregate behavior of the economy. Macroeconomics seeks to obtain an overview or general outline of the economy's structure and the relationships of its major aggregates.\n",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                    width: double.infinity, // expand all width
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                        shape: WidgetStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            side: const BorderSide(
-                              color: Color.fromARGB(255, 201, 146, 142),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(title,
+                            style: TextStyle(
+                                fontSize: 14,
+                                letterSpacing: 1.2,
+                                fontWeight: FontWeight.w600,
+                                color: color.withOpacity(0.7))),
+                        const SizedBox(height: 8),
+                        Text(headline,
+                            style: TextStyle(
+                                fontSize: 34,
+                                fontWeight: FontWeight.w700,
+                                color: color)),
+                        const SizedBox(height: 24),
+                        ...children,
+                        const SizedBox(height: 40),
+                        Center(
+                          child: ElevatedButton.icon(
+                            onPressed: () async {
+                              await UserUtil.updateLessonProgressIfCurrent(
+                                  lessonNumber);
+                              if (context.mounted) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content:
+                                          Text('Lesson marked as complete.')),
+                                );
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 28, vertical: 16),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18)),
                             ),
+                            icon: const Icon(Icons.check_rounded),
+                            label: const Text('Mark as complete'),
                           ),
                         ),
-                      ),
-                      child: const Text(
-                        "Mini quiz",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 201, 146, 142),
-                        ),
-                      ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _Paragraph extends StatelessWidget {
+  final String text;
+  const _Paragraph(this.text);
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(bottom: 18),
+        child: Text(
+          text,
+          style: TextStyle(
+            fontFamily: 'Hedvig',
+            fontSize: 17,
+            height: 1.35,
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.85),
+          ),
+        ),
+      );
+}
+
+class _BulletList extends StatelessWidget {
+  final List<String> items;
+  const _BulletList(this.items);
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.primary;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final line in items)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 6,
+                    height: 6,
+                    margin: const EdgeInsets.only(top: 7, right: 10),
+                    decoration:
+                        BoxDecoration(color: color, shape: BoxShape.circle),
+                  ),
+                  Expanded(
+                    child: Text(
+                      line,
+                      style: TextStyle(
+                          fontSize: 15,
+                          height: 1.35,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withOpacity(0.9)),
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TipCard extends StatelessWidget {
+  final String title;
+  final String body;
+  const _TipCard(this.title, this.body);
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        gradient: LinearGradient(
+          colors: [
+            scheme.primary.withOpacity(0.12),
+            scheme.primary.withOpacity(0.05)
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        border: Border.all(color: scheme.primary.withOpacity(0.2)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                  letterSpacing: .8,
+                  color: scheme.primary)),
+          const SizedBox(height: 6),
+          Text(
+            body,
+            style: TextStyle(
+                fontSize: 14.5,
+                height: 1.4,
+                color: scheme.onSurface.withOpacity(0.85)),
+          )
         ],
       ),
     );
