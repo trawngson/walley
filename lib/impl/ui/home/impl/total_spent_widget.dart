@@ -13,7 +13,7 @@ class TotalSpentWidget extends StatefulWidget {
 class _TotalSpentWidgetState extends State<TotalSpentWidget> {
   int _today = 0;
   List<int> _recent = List.filled(
-      7, 0); // mock distribution until real history aggregator is used
+      7, 0,); // mock distribution until real history aggregator is used
   bool _loading = true;
 
   @override
@@ -77,7 +77,7 @@ class _TotalSpentWidgetState extends State<TotalSpentWidget> {
               color: scheme.primary.withOpacity(.25),
               blurRadius: 24,
               offset: const Offset(0, 8),
-            )
+            ),
           ],
         ),
         padding: const EdgeInsets.all(24),
@@ -173,7 +173,7 @@ class _TotalSpentWidgetState extends State<TotalSpentWidget> {
                                     maxVisualHeight: usableHeight,
                                   ),
                                   if (i != _recent.length - 1) const SizedBox(width: 6),
-                                ]
+                                ],
                               ],
                             ),
                           );
@@ -247,7 +247,7 @@ class _SpentBar extends StatelessWidget {
               fontFamily: 'Hedvig',
               color: color.withOpacity(.9),
             ),
-          )
+          ),
         ],
       ),
     );

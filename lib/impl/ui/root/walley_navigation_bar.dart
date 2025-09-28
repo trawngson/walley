@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:walley/impl/ui/home/home_page.dart';
 import 'package:walley/impl/ui/lessons/lessons_page.dart';

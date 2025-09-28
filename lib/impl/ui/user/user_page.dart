@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:walley/impl/auth/login_screen.dart';
 import 'package:walley/impl/ui/abstract_walley_page.dart';
+import 'package:walley/impl/ui/settings/settings_page.dart';
 import 'package:walley/util/navigation_util.dart';
 import 'package:walley/util/user_util.dart';
 
@@ -18,6 +19,15 @@ class UserPage extends StatelessWidget implements AbstractWalleyPage {
           "My Account",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
+        actions: [
+          IconButton(
+            tooltip: 'Settings',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const SettingsPage()),
+            ),
+            icon: const Icon(Icons.settings_rounded),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -334,12 +334,14 @@ class UserUtil {
       final weekStart = DateTime(dt.year, dt.month, dt.day)
           .subtract(Duration(days: dt.weekday - 1));
       final weekKey = DateTime(weekStart.year, weekStart.month, weekStart.day);
-      if (weekly.containsKey(weekKey))
+      if (weekly.containsKey(weekKey)) {
         weekly[weekKey] = weekly[weekKey]! + amount;
+      }
 
       final monthKey = DateTime(dt.year, dt.month);
-      if (monthly.containsKey(monthKey))
+      if (monthly.containsKey(monthKey)) {
         monthly[monthKey] = monthly[monthKey]! + amount;
+      }
     });
 
     int nonZero(Iterable<double> vals) => vals.where((e) => e > 0).length;
@@ -353,7 +355,7 @@ class UserUtil {
           .map((d) => {
                 'label': '${d.month}/${d.day}',
                 'value': daily[d]!,
-              })
+              },)
           .toList();
     } else if (nonZero(weekly.values) >= 3) {
       interval = 'weekly';
@@ -362,7 +364,7 @@ class UserUtil {
           .map((d) => {
                 'label': 'W${_weekNumber(d)}',
                 'value': weekly[d]!,
-              })
+              },)
           .toList();
     } else {
       interval = 'monthly';
@@ -371,12 +373,12 @@ class UserUtil {
           .map((d) => {
                 'label': '${d.month}/${d.year % 100}',
                 'value': monthly[d]!,
-              })
+              },)
           .toList();
     }
 
     final maxVal = buckets.fold<double>(
-        0, (p, e) => (e['value'] as double) > p ? (e['value'] as double) : p);
+        0, (p, e) => (e['value'] as double) > p ? (e['value'] as double) : p,);
     return {
       'interval': interval,
       'buckets': buckets,

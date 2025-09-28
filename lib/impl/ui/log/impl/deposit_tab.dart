@@ -1,15 +1,18 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:walley/impl/finance/spending_category.dart';
 import 'package:walley/impl/finance/spending_category_selector_item.dart';
 import 'package:walley/impl/ui/log/impl/log_animation.dart';
-import 'package:walley/util/time_util.dart';
+// removed unused time_util import
 
 class DepositTab extends StatefulWidget {
+  final DateTime selectedDateTime;
   const DepositTab({
     super.key,
+    required this.selectedDateTime,
   });
 
   @override
@@ -75,7 +78,7 @@ class _DepositTabState extends State<DepositTab> {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "New deposit at ${TimeUtil.ofFormat("jm")}",
+              "New deposit at ${DateFormat('jm').format(widget.selectedDateTime)}",
               style: const TextStyle(
                 fontFamily: "SF Pro Display",
                 fontSize: 23,
@@ -86,7 +89,7 @@ class _DepositTabState extends State<DepositTab> {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              TimeUtil.ofFormat("EEEE, LLLL d"),
+              DateFormat('EEEE, LLLL d').format(widget.selectedDateTime),
               style: TextStyle(
                 fontFamily: "SF Pro Display",
                 fontSize: 19,
@@ -240,6 +243,8 @@ class _DepositTabState extends State<DepositTab> {
                           .name;
 
                       return LogAnimation(
+                        type: 'deposit',
+                        timestamp: widget.selectedDateTime,
                         category: category,
                         notes: _notesFieldController.text,
                         moneyAmount: tryParsingMoneyValueFromRawText(),

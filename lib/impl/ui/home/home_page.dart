@@ -61,9 +61,9 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 15),
           // Responsive financial summary cards
           if (horizontalLayout)
-            Row(
+            const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Expanded(child: BalanceWidget()),
                 SizedBox(width: 15),
                 Expanded(child: TotalSpentWidget()),
@@ -78,6 +78,33 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           const SizedBox(height: 25),
+          // Quick actions
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              OutlinedButton.icon(
+                onPressed: () {
+                  // Navigate to entry/log tab
+                  DefaultTabController.maybeOf(context);
+                  // open via nav scope if available
+                },
+                icon: const Icon(Iconsax.add),
+                label: const Text('New Entry'),
+              ),
+              OutlinedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.ios_share_rounded),
+                label: const Text('Share'),
+              ),
+              OutlinedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.settings_backup_restore_rounded),
+                label: const Text('Backup'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
           const Row(
             children: [
               /*Expanded(
@@ -171,46 +198,7 @@ class _HomePageState extends State<HomePage> {
           ),
           const LessonProgressWidget(),
           const SizedBox(height: 20),
-          Row(
-            children: [
-              const SizedBox(
-                width: 2,
-              ),
-              const Column(
-                children: [
-                  SizedBox(
-                    height: 1,
-                  ),
-                  Icon(
-                    Iconsax.note_1,
-                    size: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Your Financial Tracker",
-                  style: TextStyle(
-                    fontFamily: "SF Pro Display",
-                    fontSize: 23,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Icon(
-                Icons.ios_share,
-                size: 15,
-                color: Theme.of(context).hintColor.withAlpha(120),
-              ),
-            ],
-          ),
+          const _FinancialTrackerHeader(),
           const SizedBox(
             height: 15,
           ),
@@ -218,6 +206,38 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 20),
         ],
       ),
+    );
+  }
+}
+
+class _FinancialTrackerHeader extends StatelessWidget {
+  const _FinancialTrackerHeader();
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const SizedBox(width: 2),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 1),
+          child: Icon(Iconsax.note_1, size: 20),
+        ),
+        const SizedBox(width: 8),
+        const Expanded(
+          child: Text(
+            "Your Financial Tracker",
+            style: TextStyle(
+              fontFamily: "SF Pro Display",
+              fontSize: 23,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        Icon(
+          Icons.ios_share,
+          size: 15,
+          color: Theme.of(context).hintColor.withAlpha(120),
+        ),
+      ],
     );
   }
 }

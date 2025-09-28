@@ -14,7 +14,7 @@ class Unit1Lesson3 extends StatelessWidget {
       lessonNumber: lessonNumber,
       children: [
         _Paragraph(
-            'A solid budget is the backbone of every financial plan. Today you will learn how to structure a simple, realistic budget that you can actually stick to.'),
+            'A solid budget is the backbone of every financial plan. Today you will learn how to structure a simple, realistic budget that you can actually stick to.',),
         _BulletList([
           'List your reliable income streams',
           'Categorize expenses (Needs / Wants / Growth)',
@@ -22,7 +22,7 @@ class Unit1Lesson3 extends StatelessWidget {
           'Review weekly; adjust monthly',
         ]),
         _TipCard('Pro Tip',
-            'Automate saving by moving money to a goal account the moment income arrives.')
+            'Automate saving by moving money to a goal account the moment income arrives.',),
       ],
     );
   }
@@ -39,7 +39,7 @@ class Unit1Lesson4 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Saving is less about discipline and more about design. Create environmental defaults that make the right action effortless.'),
+              'Saving is less about discipline and more about design. Create environmental defaults that make the right action effortless.',),
           _BulletList([
             'Separate accounts for goals',
             'Name accounts to increase emotional attachment',
@@ -47,7 +47,7 @@ class Unit1Lesson4 extends StatelessWidget {
             'Escalate savings % after every raise',
           ]),
           _TipCard('Experiment',
-              'Try a 24‑hour rule before non‑essential purchases to reduce impulse leakage.')
+              'Try a 24‑hour rule before non‑essential purchases to reduce impulse leakage.',),
         ],
       );
 }
@@ -63,7 +63,7 @@ class Unit1Lesson5 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Not all debt is equal. Understand cost, flexibility, and risk to prioritize repayment strategically.'),
+              'Not all debt is equal. Understand cost, flexibility, and risk to prioritize repayment strategically.',),
           _BulletList([
             'Track APR & remaining balance',
             'Snowball vs Avalanche methods',
@@ -71,7 +71,7 @@ class Unit1Lesson5 extends StatelessWidget {
             'Avoid lifestyle debt expansion',
           ]),
           _TipCard('Decision Lens',
-              'Ask: Will this debt increase future earning capacity or only satisfy present consumption?')
+              'Ask: Will this debt increase future earning capacity or only satisfy present consumption?',),
         ],
       );
 }
@@ -87,7 +87,7 @@ class Unit1Lesson6 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Liquidity shields you from turning small setbacks into expensive debt spirals.'),
+              'Liquidity shields you from turning small setbacks into expensive debt spirals.',),
           _BulletList([
             'Target: 3–6 months essential outflow',
             'Start micro: first goal = 1 week buffer',
@@ -95,7 +95,7 @@ class Unit1Lesson6 extends StatelessWidget {
             'Rebuild immediately after use',
           ]),
           _TipCard('Motivation Hack',
-              'Rename the fund after the emotion it protects (e.g. “Calm Fund”).')
+              'Rename the fund after the emotion it protects (e.g. “Calm Fund”).',),
         ],
       );
 }
@@ -111,7 +111,7 @@ class Unit1Lesson7 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'You have assembled core personal finance primitives. Today: consolidate into an executable routine.'),
+              'You have assembled core personal finance primitives. Today: consolidate into an executable routine.',),
           _BulletList([
             'Weekly 10‑min money review',
             'Monthly category re‑allocation',
@@ -119,7 +119,7 @@ class Unit1Lesson7 extends StatelessWidget {
             'Annual strategic goal reset',
           ]),
           _TipCard('Sustainability',
-              'Consistency > intensity. Favor simple dashboards you will maintain.')
+              'Consistency > intensity. Favor simple dashboards you will maintain.',),
         ],
       );
 }
@@ -136,7 +136,7 @@ class Unit2Lesson1 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Compounding is a time amplification engine. Start early, stay allocated.'),
+              'Compounding is a time amplification engine. Start early, stay allocated.',),
           _BulletList([
             'Risk vs Volatility',
             'Inflation as invisible tax',
@@ -144,7 +144,7 @@ class Unit2Lesson1 extends StatelessWidget {
             'Diversification reduces single‑point failure',
           ]),
           _TipCard('Mindset',
-              'Volatility is a feature. Focus on process, not short‑term price noise.')
+              'Volatility is a feature. Focus on process, not short‑term price noise.',),
         ],
       );
 }
@@ -160,7 +160,7 @@ class Unit2Lesson2 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Each asset class encodes a trade‑off between growth, stability, and liquidity.'),
+              'Each asset class encodes a trade‑off between growth, stability, and liquidity.',),
           _BulletList([
             'Equities: growth engine',
             'Bonds: income & dampener',
@@ -168,7 +168,7 @@ class Unit2Lesson2 extends StatelessWidget {
             'Cash: optionality reserve',
           ]),
           _TipCard('Allocation Rule',
-              'Increase diversification with uncorrelated cash flows, not just ticker count.')
+              'Increase diversification with uncorrelated cash flows, not just ticker count.',),
         ],
       );
 }
@@ -184,7 +184,7 @@ class Unit2Lesson3 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Costs compound against you. Passive, low‑fee indexing often outperforms over long horizons.'),
+              'Costs compound against you. Passive, low‑fee indexing often outperforms over long horizons.',),
           _BulletList([
             'Expense ratios drag returns',
             'Turnover creates tax friction',
@@ -192,7 +192,7 @@ class Unit2Lesson3 extends StatelessWidget {
             'Simplicity reduces behavioral errors',
           ]),
           _TipCard('Action',
-              'Compare fees annually & migrate if materially cheaper for same exposure.')
+              'Compare fees annually & migrate if materially cheaper for same exposure.',),
         ],
       );
 }
@@ -208,7 +208,7 @@ class Unit2Lesson4 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Survival is the prerequisite to compounding. Guard the downside.'),
+              'Survival is the prerequisite to compounding. Guard the downside.',),
           _BulletList([
             'Position sizing logic',
             'Emergency + opportunity cash tiers',
@@ -216,7 +216,7 @@ class Unit2Lesson4 extends StatelessWidget {
             'Rebalancing cadence',
           ]),
           _TipCard('Checklist',
-              'Review allocation drift quarterly; rebalance inside tax‑advantaged accounts when possible.')
+              'Review allocation drift quarterly; rebalance inside tax‑advantaged accounts when possible.',),
         ],
       );
 }
@@ -232,7 +232,7 @@ class Unit2Lesson5 extends StatelessWidget {
         lessonNumber: lessonNumber,
         children: [
           _Paragraph(
-              'Strategy drift happens subtly. Periodic reflection keeps alignment with life goals.'),
+              'Strategy drift happens subtly. Periodic reflection keeps alignment with life goals.',),
           _BulletList([
             'Annual return attribution',
             'Goal vs portfolio mismatch review',
@@ -240,7 +240,7 @@ class Unit2Lesson5 extends StatelessWidget {
             'Behavioral error diary',
           ]),
           _TipCard('Continuity',
-              'Document your Investment Policy Statement (IPS) & revisit yearly.')
+              'Document your Investment Policy Statement (IPS) & revisit yearly.',),
         ],
       );
 }
@@ -257,7 +257,7 @@ class _ScaffoldLesson extends StatelessWidget {
       required this.headline,
       required this.color,
       required this.lessonNumber,
-      required this.children});
+      required this.children,});
 
   @override
   Widget build(BuildContext context) {
@@ -274,13 +274,13 @@ class _ScaffoldLesson extends StatelessWidget {
                   automaticallyImplyLeading: true,
                   title: Text(headline,
                       style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.w600)),
+                          fontSize: 20, fontWeight: FontWeight.w600,),),
                   actions: [
                     IconButton(
                       tooltip: 'Mark Complete',
                       onPressed: () async {
                         await UserUtil.updateLessonProgressIfCurrent(
-                            lessonNumber);
+                            lessonNumber,);
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Progress updated')),
@@ -288,7 +288,7 @@ class _ScaffoldLesson extends StatelessWidget {
                         }
                       },
                       icon: const Icon(Icons.check_circle_outline),
-                    )
+                    ),
                   ],
                 ),
                 SliverToBoxAdapter(
@@ -306,13 +306,13 @@ class _ScaffoldLesson extends StatelessWidget {
                                 fontSize: 14,
                                 letterSpacing: 1.2,
                                 fontWeight: FontWeight.w600,
-                                color: color.withOpacity(0.7))),
+                                color: color.withOpacity(0.7),),),
                         const SizedBox(height: 8),
                         Text(headline,
                             style: TextStyle(
                                 fontSize: 34,
                                 fontWeight: FontWeight.w700,
-                                color: color)),
+                                color: color,),),
                         const SizedBox(height: 24),
                         ...children,
                         const SizedBox(height: 40),
@@ -320,20 +320,20 @@ class _ScaffoldLesson extends StatelessWidget {
                           child: ElevatedButton.icon(
                             onPressed: () async {
                               await UserUtil.updateLessonProgressIfCurrent(
-                                  lessonNumber);
+                                  lessonNumber,);
                               if (context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content:
-                                          Text('Lesson marked as complete.')),
+                                          Text('Lesson marked as complete.'),),
                                 );
                               }
                             },
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 28, vertical: 16),
+                                  horizontal: 28, vertical: 16,),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
+                                  borderRadius: BorderRadius.circular(18),),
                             ),
                             icon: const Icon(Icons.check_rounded),
                             label: const Text('Mark as complete'),
@@ -403,7 +403,7 @@ class _BulletList extends StatelessWidget {
                           color: Theme.of(context)
                               .colorScheme
                               .onSurface
-                              .withOpacity(0.9)),
+                              .withOpacity(0.9),),
                     ),
                   ),
                 ],
@@ -430,7 +430,7 @@ class _TipCard extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             scheme.primary.withOpacity(0.12),
-            scheme.primary.withOpacity(0.05)
+            scheme.primary.withOpacity(0.05),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -445,15 +445,15 @@ class _TipCard extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                   letterSpacing: .8,
-                  color: scheme.primary)),
+                  color: scheme.primary,),),
           const SizedBox(height: 6),
           Text(
             body,
             style: TextStyle(
                 fontSize: 14.5,
                 height: 1.4,
-                color: scheme.onSurface.withOpacity(0.85)),
-          )
+                color: scheme.onSurface.withOpacity(0.85),),
+          ),
         ],
       ),
     );

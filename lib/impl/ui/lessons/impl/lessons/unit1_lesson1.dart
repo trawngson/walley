@@ -7,14 +7,14 @@ class Unit1Lesson1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _ScaffoldLesson(
+    return const _ScaffoldLesson(
       title: 'UNIT 1 · LESSON 1',
       headline: 'Flagship Concepts',
       color: Colors.redAccent,
       lessonNumber: lessonNumber,
-      children: const [
+      children: [
         _Paragraph(
-            'Welcome! This first lesson establishes the mental models you will reuse everywhere: cash flow, margin, and intentional allocation.'),
+            'Welcome! This first lesson establishes the mental models you will reuse everywhere: cash flow, margin, and intentional allocation.',),
         _BulletList([
           'Money = resource that buys time & optionality',
           'Cash Flow = recurring pattern, not isolated events',
@@ -22,7 +22,7 @@ class Unit1Lesson1 extends StatelessWidget {
           'Small consistent habits beat irregular intensity',
         ]),
         _TipCard('Reflect',
-            'List three money decisions from last week. Would Future-You vote to repeat them?')
+            'List three money decisions from last week. Would Future-You vote to repeat them?',),
       ],
     );
   }
@@ -40,7 +40,7 @@ class _ScaffoldLesson extends StatelessWidget {
       required this.headline,
       required this.color,
       required this.lessonNumber,
-      required this.children});
+      required this.children,});
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +57,13 @@ class _ScaffoldLesson extends StatelessWidget {
                   automaticallyImplyLeading: true,
                   title: Text(headline,
                       style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.w600)),
+                          fontSize: 20, fontWeight: FontWeight.w600,),),
                   actions: [
                     IconButton(
                       tooltip: 'Mark Complete',
                       onPressed: () async {
                         await UserUtil.updateLessonProgressIfCurrent(
-                            lessonNumber);
+                            lessonNumber,);
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Progress updated')),
@@ -71,7 +71,7 @@ class _ScaffoldLesson extends StatelessWidget {
                         }
                       },
                       icon: const Icon(Icons.check_circle_outline),
-                    )
+                    ),
                   ],
                 ),
                 SliverToBoxAdapter(
@@ -89,13 +89,13 @@ class _ScaffoldLesson extends StatelessWidget {
                                 fontSize: 14,
                                 letterSpacing: 1.2,
                                 fontWeight: FontWeight.w600,
-                                color: color.withOpacity(0.7))),
+                                color: color.withOpacity(0.7),),),
                         const SizedBox(height: 8),
                         Text(headline,
                             style: TextStyle(
                                 fontSize: 34,
                                 fontWeight: FontWeight.w700,
-                                color: color)),
+                                color: color,),),
                         const SizedBox(height: 24),
                         ...children,
                         const SizedBox(height: 40),
@@ -103,20 +103,20 @@ class _ScaffoldLesson extends StatelessWidget {
                           child: ElevatedButton.icon(
                             onPressed: () async {
                               await UserUtil.updateLessonProgressIfCurrent(
-                                  lessonNumber);
+                                  lessonNumber,);
                               if (context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content:
-                                          Text('Lesson marked as complete.')),
+                                          Text('Lesson marked as complete.'),),
                                 );
                               }
                             },
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 28, vertical: 16),
+                                  horizontal: 28, vertical: 16,),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
+                                  borderRadius: BorderRadius.circular(18),),
                             ),
                             icon: const Icon(Icons.check_rounded),
                             label: const Text('Mark as complete'),
@@ -186,7 +186,7 @@ class _BulletList extends StatelessWidget {
                           color: Theme.of(context)
                               .colorScheme
                               .onSurface
-                              .withOpacity(0.9)),
+                              .withOpacity(0.9),),
                     ),
                   ),
                 ],
@@ -213,7 +213,7 @@ class _TipCard extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             scheme.primary.withOpacity(0.12),
-            scheme.primary.withOpacity(0.05)
+            scheme.primary.withOpacity(0.05),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -228,15 +228,15 @@ class _TipCard extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                   letterSpacing: .8,
-                  color: scheme.primary)),
+                  color: scheme.primary,),),
           const SizedBox(height: 6),
           Text(
             body,
             style: TextStyle(
                 fontSize: 14.5,
                 height: 1.4,
-                color: scheme.onSurface.withOpacity(0.85)),
-          )
+                color: scheme.onSurface.withOpacity(0.85),),
+          ),
         ],
       ),
     );

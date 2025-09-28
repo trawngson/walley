@@ -64,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ],
         ),
+        const SizedBox(height: 10),
         Form(
           key: form,
           child: Column(
@@ -78,6 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 validator: ValidationBuilder().email().maxLength(30).build(),
                 decoration: InputDecoration(
                   labelText: "Email",
+                  prefixIcon: const Icon(Icons.email_outlined),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -103,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     .build(),
                 decoration: InputDecoration(
                   labelText: "Password",
+                  prefixIcon: const Icon(Icons.lock_outline_rounded),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

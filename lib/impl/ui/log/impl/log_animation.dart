@@ -7,13 +7,15 @@ import 'package:walley/util/user_util.dart';
 class LogAnimation extends StatefulWidget {
   final String category, notes;
   final int? moneyAmount;
-  bool entrySubmitted = false;
-  AsyncSnapshot? newEntry;
-  LogAnimation({
+  final DateTime timestamp;
+  final String type; // 'expend' | 'deposit'
+  const LogAnimation({
     super.key,
     required this.category,
     required this.notes,
     required this.moneyAmount,
+    required this.timestamp,
+    required this.type,
   });
 
   @override
@@ -22,6 +24,8 @@ class LogAnimation extends StatefulWidget {
 
 class _LogAnimationState extends State<LogAnimation>
     with TickerProviderStateMixin {
+  bool entrySubmitted = false;
+  AsyncSnapshot? newEntry;
   final AudioPlayer player = AudioPlayer();
   late final AnimationController _tickOpacityAnimationController,
       _opacityBackgroundAnimationController,
@@ -34,19 +38,19 @@ class _LogAnimationState extends State<LogAnimation>
 
   @override
   void initState() {
-    widget.entrySubmitted = false;
+    entrySubmitted = false;
     UserUtil.modifyJsonDocument(
       "spendingHistory",
       (Map<String, dynamic> currentData) {
-        currentData[DateTime.now().toString()] = {
-          "type": "expend",
+        currentData[widget.timestamp.toString()] = {
+          "type": widget.type,
           "amount": widget.moneyAmount.toString(),
           "category": widget.category,
           "notes": widget.notes,
         };
         return currentData;
       },
-    ).then((_) => widget.entrySubmitted = true);
+    ).then((_) => entrySubmitted = true);
 
     playedSuccessSound = false;
     alreadyPopped = false;
@@ -87,7 +91,7 @@ class _LogAnimationState extends State<LogAnimation>
     return FutureBuilder(
       future: UserUtil.modifyBalance(widget.moneyAmount!),
       builder: (_, balanceModification) {
-        bool isConnectionPending = (!widget.entrySubmitted ||
+        bool isConnectionPending = (!entrySubmitted ||
             balanceModification.connectionState != ConnectionState.done ||
             balanceModification.error != null);
 

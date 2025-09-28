@@ -14,7 +14,7 @@ String formatCurrencyVND(num amount, {bool symbolAtEnd = true}) {
   if (!symbolAtEnd) return raw; // default returns symbol first
   final sym = _vndNumberFormat.currencySymbol; // ₫
   if (raw.startsWith(sym)) {
-    return raw.substring(sym.length).trim() + ' $sym';
+    return '${raw.substring(sym.length).trim()} $sym';
   }
   return raw;
 }

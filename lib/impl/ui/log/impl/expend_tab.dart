@@ -1,16 +1,19 @@
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:walley/impl/finance/spending_category.dart';
 import 'package:walley/impl/finance/spending_category_selector_item.dart';
 import 'package:walley/impl/ui/log/impl/log_animation.dart';
-import 'package:walley/util/time_util.dart';
+// removed unused time_util import
 import 'package:walley/util/user_util.dart';
 
 class ExpendTab extends StatefulWidget {
+  final DateTime selectedDateTime;
   const ExpendTab({
     super.key,
+    required this.selectedDateTime,
   });
 
   @override
@@ -78,7 +81,7 @@ class _ExpendTabState extends State<ExpendTab> {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              "New expidenture at ${TimeUtil.ofFormat("jm")}",
+              "New expenditure at ${DateFormat('jm').format(widget.selectedDateTime)}",
               style: const TextStyle(
                 fontFamily: "SF Pro Display",
                 fontSize: 23,
@@ -89,7 +92,7 @@ class _ExpendTabState extends State<ExpendTab> {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              TimeUtil.ofFormat("EEEE, LLLL d"),
+              DateFormat('EEEE, LLLL d').format(widget.selectedDateTime),
               style: TextStyle(
                 fontFamily: "SF Pro Display",
                 fontSize: 19,
@@ -266,6 +269,8 @@ class _ExpendTabState extends State<ExpendTab> {
                               .name;
 
                           return LogAnimation(
+                            type: 'expend',
+                            timestamp: widget.selectedDateTime,
                             category: category,
                             notes: _notesFieldController.text,
                             moneyAmount: -tryParsingMoneyValueFromRawText()!,

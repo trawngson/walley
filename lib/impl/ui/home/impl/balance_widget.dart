@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:walley/util/user_util.dart';
+import 'package:walley/util/export_util.dart';
+import 'package:flutter/services.dart';
+import 'package:walley/util/snack_util.dart';
 import 'package:walley/util/currency_util.dart';
 import 'package:walley/impl/ui/root/walley_navigation_scope.dart';
 
@@ -100,7 +103,7 @@ class _BalanceWidgetState extends State<BalanceWidget>
                               gradient: RadialGradient(colors: [
                                 scheme.onTertiary.withOpacity(.25),
                                 scheme.onTertiary.withOpacity(0),
-                              ]),
+                              ],),
                             ),
                             child: Icon(
                               Icons.account_balance_wallet_rounded,
@@ -124,19 +127,27 @@ class _BalanceWidgetState extends State<BalanceWidget>
                     ],
                   ),
                   const SizedBox(height: 12),
-                  SizedBox(
-                    height: amountSectionHeight,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
+                  GestureDetector(
+                    onLongPress: () async {
+                      await Clipboard.setData(ClipboardData(text: formatCurrencyVND(_balance)));
+                      if (context.mounted) {
+                        SnackUtil.showInfo(context, 'Copied balance to clipboard');
+                      }
+                    },
+                    child: SizedBox(
+                      height: amountSectionHeight,
+                      child: Align(
                         alignment: Alignment.centerLeft,
-                        child: ResponsiveVndAmount(
-                          _balance,
-                          symbolAtEnd: true,
-                          style: TextStyle(
-                            color: scheme.onTertiary,
-                            fontFamily: 'SF Pro Display',
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: ResponsiveVndAmount(
+                            _balance,
+                            symbolAtEnd: true,
+                            style: TextStyle(
+                              color: scheme.onTertiary,
+                              fontFamily: 'SF Pro Display',
+                            ),
                           ),
                         ),
                       ),
@@ -172,7 +183,7 @@ class _BalanceWidgetState extends State<BalanceWidget>
                           backgroundColor: scheme.onTertiary,
                           foregroundColor: scheme.tertiary,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 12),
+                              horizontal: 18, vertical: 12,),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
@@ -188,11 +199,11 @@ class _BalanceWidgetState extends State<BalanceWidget>
                             borderRadius: BorderRadius.circular(16),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () async => ExportUtil.exportCsv(context),
                         child: const Text('Export'),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -220,6 +231,8 @@ class _BalanceWidgetState extends State<BalanceWidget>
   }
 }
 
+//
+
 class _BalanceSparkline extends StatefulWidget {
   final int balance;
   final Color color;
@@ -236,10 +249,10 @@ class _BalanceSparklineState extends State<_BalanceSparkline>
   void initState() {
     super.initState();
     _c = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 900))
+        vsync: this, duration: const Duration(milliseconds: 900),)
       ..forward();
     points = List.generate(
-        14, (i) => sin(i / 2) * .4 + .6 + Random().nextDouble() * .15);
+        14, (i) => sin(i / 2) * .4 + .6 + Random().nextDouble() * .15,);
   }
 
   @override
@@ -248,7 +261,7 @@ class _BalanceSparklineState extends State<_BalanceSparkline>
     if (oldWidget.balance != widget.balance) {
       _c.forward(from: 0);
       points = List.generate(
-          14, (i) => sin(i / 2) * .4 + .6 + Random().nextDouble() * .15);
+          14, (i) => sin(i / 2) * .4 + .6 + Random().nextDouble() * .15,);
     }
   }
 
@@ -258,7 +271,7 @@ class _BalanceSparklineState extends State<_BalanceSparkline>
       animation: _c,
       builder: (_, __) => CustomPaint(
         painter: _SparkPainter(
-            points: points, progress: _c.value, color: widget.color),
+            points: points, progress: _c.value, color: widget.color,),
       ),
     );
   }
@@ -275,11 +288,11 @@ class _SparkPainter extends CustomPainter {
   final double progress;
   final Color color;
   _SparkPainter(
-      {required this.points, required this.progress, required this.color});
+      {required this.points, required this.progress, required this.color,});
   @override
   void paint(Canvas canvas, Size size) {
     final path = Path();
-    final double topPad = 8;
+    const double topPad = 8;
     final double height = size.height - topPad * 2;
     for (int i = 0; i < points.length; i++) {
       final pct = i / (points.length - 1);

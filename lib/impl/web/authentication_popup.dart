@@ -14,10 +14,10 @@ class LoginPopup extends StatefulWidget {
       {super.key,
       required this.title,
       required this.subtitle,
-      required this.isSignin});
+      required this.isSignin,});
 
   static Future<T?> show<T>(
-      BuildContext context, String title, String subtitle, bool isSignin) {
+      BuildContext context, String title, String subtitle, bool isSignin,) {
     return showDialog<T>(
       context: context,
       barrierDismissible: true,
@@ -54,7 +54,7 @@ class _LoginPopupState extends State<LoginPopup> {
   void _goProviders() => _animateTo(0);
   void _animateTo(int page) => _pageController.animateToPage(page,
       duration: const Duration(milliseconds: 450),
-      curve: Curves.easeInOutCubic);
+      curve: Curves.easeInOutCubic,);
 
   Future<void> _signInWithGoogle() async {
     try {
@@ -108,7 +108,7 @@ class _LoginPopupState extends State<LoginPopup> {
         _error = null;
       });
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _email.text.trim(), password: _password.text);
+          email: _email.text.trim(), password: _password.text,);
       if (mounted) {
         Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
           MaterialPageRoute(builder: (_) => const RootPage()),
@@ -130,7 +130,7 @@ class _LoginPopupState extends State<LoginPopup> {
         _error = null;
       });
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _email.text.trim(), password: _password.text);
+          email: _email.text.trim(), password: _password.text,);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(_email.text.trim())
@@ -193,12 +193,12 @@ class _LoginPopupState extends State<LoginPopup> {
     final double headerSize = veryNarrow ? 24 : 30;
     final double subSize = veryNarrow ? 13 : 15;
     final EdgeInsets contentPadding = EdgeInsets.symmetric(
-        horizontal: veryNarrow ? 20 : 32, vertical: veryNarrow ? 18 : 28);
+        horizontal: veryNarrow ? 20 : 32, vertical: veryNarrow ? 18 : 28,);
 
     return Center(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-            maxWidth: maxCardWidth, maxHeight: maxCardHeight, minWidth: 300),
+            maxWidth: maxCardWidth, maxHeight: maxCardHeight, minWidth: 300,),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(28),
           child: Material(
@@ -225,14 +225,14 @@ class _LoginPopupState extends State<LoginPopup> {
                                 key: const ValueKey('back'),
                                 tooltip: 'Back',
                                 onPressed: _goProviders,
-                                icon: const Icon(Icons.arrow_back_rounded))
+                                icon: const Icon(Icons.arrow_back_rounded),)
                             : const SizedBox(
-                                width: 48, key: ValueKey('spacer')),
+                                width: 48, key: ValueKey('spacer'),),
                       ),
                       IconButton(
                           tooltip: 'Close',
                           onPressed: () => Navigator.of(context).maybePop(),
-                          icon: const Icon(Icons.close_rounded)),
+                          icon: const Icon(Icons.close_rounded),),
                     ],
                   ),
                   if (_loading) const LinearProgressIndicator(minHeight: 2),
@@ -257,7 +257,7 @@ class _LoginPopupState extends State<LoginPopup> {
   }
 
   Widget _buildProviderPage(
-      BuildContext context, double headerSize, double subSize) {
+      BuildContext context, double headerSize, double subSize,) {
     final title = _isSignin ? widget.title : 'Get Started';
     final subtitle =
         _isSignin ? widget.subtitle : 'Create an account to begin your journey';
@@ -271,7 +271,7 @@ class _LoginPopupState extends State<LoginPopup> {
                   fontFamily: 'SF Pro Display',
                   fontSize: headerSize,
                   fontWeight: FontWeight.w700,
-                  height: 1.1)),
+                  height: 1.1,),),
           const SizedBox(height: 8),
           Text(subtitle,
               style: TextStyle(
@@ -280,7 +280,7 @@ class _LoginPopupState extends State<LoginPopup> {
                   color: Theme.of(context)
                       .colorScheme
                       .onSurface
-                      .withOpacity(0.65))),
+                      .withOpacity(0.65),),),
           const SizedBox(height: 28),
           _AuthButton(
               label: '${_isSignin ? 'Continue' : 'Sign up'} with Google',
@@ -288,21 +288,21 @@ class _LoginPopupState extends State<LoginPopup> {
               background: Colors.white,
               foreground: Colors.black87,
               border: BorderSide(color: Colors.grey.withOpacity(0.4)),
-              onTap: _signInWithGoogle),
+              onTap: _signInWithGoogle,),
           const SizedBox(height: 14),
           _AuthButton(
               label: '${_isSignin ? 'Continue' : 'Sign up'} with Facebook',
               icon: Icons.facebook_rounded,
               background: const Color(0xFF1877F2),
               foreground: Colors.white,
-              onTap: _signInWithFacebook),
+              onTap: _signInWithFacebook,),
           const SizedBox(height: 14),
           _AuthButton(
               label: '${_isSignin ? 'Continue' : 'Sign up'} with Email',
               icon: Icons.mail_outline_rounded,
               background: Theme.of(context).colorScheme.primary,
               foreground: Theme.of(context).colorScheme.onPrimary,
-              onTap: _goToEmail),
+              onTap: _goToEmail,),
           const SizedBox(height: 20),
           Center(
             child: GestureDetector(
@@ -321,7 +321,7 @@ class _LoginPopupState extends State<LoginPopup> {
                     fontFamily: 'Hedvig',
                     fontSize: subSize - 1,
                     color: Theme.of(context).colorScheme.primary,
-                    decoration: TextDecoration.underline),
+                    decoration: TextDecoration.underline,),
               ),
             ),
           ),
@@ -329,7 +329,7 @@ class _LoginPopupState extends State<LoginPopup> {
           Divider(
               height: 32,
               thickness: 1,
-              color: Theme.of(context).dividerColor.withOpacity(0.3)),
+              color: Theme.of(context).dividerColor.withOpacity(0.3),),
           Wrap(
             spacing: 4,
             runSpacing: 4,
@@ -342,7 +342,7 @@ class _LoginPopupState extends State<LoginPopup> {
                       color: Theme.of(context)
                           .colorScheme
                           .onSurface
-                          .withOpacity(0.55))),
+                          .withOpacity(0.55),),),
               _LinkText('Terms', onTap: () {}),
               Text('and',
                   style: TextStyle(
@@ -351,7 +351,7 @@ class _LoginPopupState extends State<LoginPopup> {
                       color: Theme.of(context)
                           .colorScheme
                           .onSurface
-                          .withOpacity(0.55))),
+                          .withOpacity(0.55),),),
               _LinkText('Privacy Policy', onTap: () {}),
             ],
           ),
@@ -361,7 +361,7 @@ class _LoginPopupState extends State<LoginPopup> {
   }
 
   Widget _buildEmailPage(
-      BuildContext context, double headerSize, double subSize) {
+      BuildContext context, double headerSize, double subSize,) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Form(
@@ -374,7 +374,7 @@ class _LoginPopupState extends State<LoginPopup> {
                     fontFamily: 'SF Pro Display',
                     fontSize: headerSize,
                     fontWeight: FontWeight.w700,
-                    height: 1.1)),
+                    height: 1.1,),),
             const SizedBox(height: 8),
             Text(
                 _isSignin
@@ -386,7 +386,7 @@ class _LoginPopupState extends State<LoginPopup> {
                     color: Theme.of(context)
                         .colorScheme
                         .onSurface
-                        .withOpacity(0.65))),
+                        .withOpacity(0.65),),),
             const SizedBox(height: 24),
             if (!_isSignin) ...[
               TextFormField(
@@ -397,7 +397,7 @@ class _LoginPopupState extends State<LoginPopup> {
                 decoration: InputDecoration(
                     labelText: 'Name',
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(14))),
+                        borderRadius: BorderRadius.circular(14),),),
               ),
               const SizedBox(height: 16),
             ],
@@ -407,14 +407,15 @@ class _LoginPopupState extends State<LoginPopup> {
               autofillHints: const [AutofillHints.email],
               validator: (v) {
                 if (v == null || v.trim().isEmpty) return 'Email required';
-                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v.trim()))
+                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(v.trim())) {
                   return 'Invalid email';
+                }
                 return null;
               },
               decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14))),
+                      borderRadius: BorderRadius.circular(14),),),
             ),
             const SizedBox(height: 16),
             TextFormField(
@@ -430,7 +431,7 @@ class _LoginPopupState extends State<LoginPopup> {
               decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14))),
+                      borderRadius: BorderRadius.circular(14),),),
             ),
             const SizedBox(height: 12),
             if (_error != null)
@@ -440,7 +441,7 @@ class _LoginPopupState extends State<LoginPopup> {
                     style: TextStyle(
                         fontFamily: 'Hedvig',
                         fontSize: subSize - 1,
-                        color: Theme.of(context).colorScheme.error)),
+                        color: Theme.of(context).colorScheme.error,),),
               ),
             SizedBox(
               width: double.infinity,
@@ -451,12 +452,12 @@ class _LoginPopupState extends State<LoginPopup> {
                     : (_isSignin ? _signInWithEmail : _registerWithEmail),
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16))),
+                        borderRadius: BorderRadius.circular(16),),),
                 child: _loading
                     ? const SizedBox(
                         width: 20,
                         height: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2))
+                        child: CircularProgressIndicator(strokeWidth: 2),)
                     : Text(_isSignin ? 'Sign in' : 'Create account'),
               ),
             ),
@@ -473,7 +474,7 @@ class _LoginPopupState extends State<LoginPopup> {
                         fontFamily: 'Hedvig',
                         fontSize: subSize - 1,
                         decoration: TextDecoration.underline,
-                        color: Theme.of(context).colorScheme.primary)),
+                        color: Theme.of(context).colorScheme.primary,),),
               ),
             ),
             const SizedBox(height: 14),
@@ -493,7 +494,7 @@ class _LoginPopupState extends State<LoginPopup> {
                     style: TextStyle(
                         fontFamily: 'Hedvig',
                         fontSize: subSize - 1,
-                        color: Theme.of(context).colorScheme.primary)),
+                        color: Theme.of(context).colorScheme.primary,),),
               ),
             ),
           ],
@@ -516,7 +517,7 @@ class _AuthButton extends StatelessWidget {
       required this.background,
       required this.foreground,
       required this.onTap,
-      this.border});
+      this.border,});
 
   @override
   Widget build(BuildContext context) {
@@ -535,7 +536,7 @@ class _AuthButton extends StatelessWidget {
               BoxShadow(
                   color: Colors.black.withOpacity(0.06),
                   blurRadius: 16,
-                  offset: const Offset(0, 4)),
+                  offset: const Offset(0, 4),),
             ],
           ),
           child: Row(
@@ -550,7 +551,7 @@ class _AuthButton extends StatelessWidget {
                         fontFamily: 'SF Pro Display',
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: foreground)),
+                        color: foreground,),),
               ),
             ],
           ),
@@ -574,7 +575,7 @@ class _LinkText extends StatelessWidget {
               fontSize: 12,
               fontWeight: FontWeight.w600,
               color: Theme.of(context).colorScheme.primary,
-              decoration: TextDecoration.underline)),
+              decoration: TextDecoration.underline,),),
     );
   }
 }

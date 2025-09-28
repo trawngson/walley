@@ -1,15 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:motion/motion.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:walley/global_variable.dart';
-import 'package:walley/impl/web/footnote/privacy_policy.dart';
-import 'package:walley/impl/web/footnote/terms_of_service.dart';
 import 'package:walley/impl/web/web_app_bar.dart';
-import 'package:walley/root_page.dart';
-import 'package:walley/util/interface_util.dart';
-import 'package:walley/util/navigation_util.dart';
 import 'package:walley/impl/web/authentication_popup.dart';
 
 class WebRoot extends StatelessWidget {

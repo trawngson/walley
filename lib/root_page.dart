@@ -36,6 +36,7 @@ class _RootPageState extends State<RootPage> {
     return WalleyNavigationScope(
       selectTab: _onTabChange,
       child: Scaffold(
+        endDrawer: _ChangelogDrawer(),
         bottomNavigationBar: _isCompact
             ? WalleyNavigationBar(
                 _index,
@@ -162,6 +163,46 @@ class _RootPageState extends State<RootPage> {
               ),
               const Icon(Icons.arrow_forward_ios_rounded, size: 16),
             ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ChangelogDrawer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Drawer(
+      child: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            ListTile(
+              leading: Icon(Icons.new_releases_rounded, color: cs.primary),
+              title: const Text('What’s new'),
+              subtitle: const Text('Latest improvements and tips'),
+            ),
+            const Divider(),
+            const ListTile(
+              title: Text('• Responsive Log with quick add'),
+              subtitle: Text('Add entries with backdating and recent activity'),
+            ),
+            const ListTile(
+              title: Text('• Spending charts'),
+              subtitle: Text('Visualize daily/weekly/monthly distribution'),
+            ),
+            const ListTile(
+              title: Text('• Enhanced Home'),
+              subtitle: Text('Balance sparkline, progress pulse, tidy cards'),
+            ),
+            const SizedBox(height: 20),
+            TextButton.icon(
+              onPressed: () => Navigator.of(context).maybePop(),
+              icon: const Icon(Icons.close_rounded),
+              label: const Text('Close'),
+            ),
           ],
         ),
       ),

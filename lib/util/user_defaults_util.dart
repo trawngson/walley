@@ -67,4 +67,15 @@ class UserDefaultsUtil {
       },
     );
   }
+
+  // Convenience getters/setters for simple feature toggles
+  static Future<bool> getBool(String key, {bool defaultValue = true}) async {
+    if (preferences == null) await initialize();
+    return preferences!.getBool(key) ?? defaultValue;
+  }
+
+  static Future<void> setBool(String key, bool value) async {
+    if (preferences == null) await initialize();
+    await preferences!.setBool(key, value);
+  }
 }

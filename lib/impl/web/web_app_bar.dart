@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:walley/impl/web/authentication_popup.dart';
 import 'package:walley/util/interface_util.dart';
+import 'package:walley/impl/web/footnote/privacy_policy.dart';
+import 'package:walley/impl/web/footnote/terms_of_service.dart';
 
 class WebAppBar extends StatelessWidget implements PreferredSizeWidget {
   const WebAppBar({super.key});
@@ -20,6 +22,18 @@ class WebAppBar extends StatelessWidget implements PreferredSizeWidget {
           semanticsLabel: 'Text Logo',
         ),
         actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const TermsOfService()),
+            ),
+            child: const Text('Terms'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const PrivacyPolicy()),
+            ),
+            child: const Text('Privacy'),
+          ),
           ElevatedButton(
             onPressed: () => {
               LoginPopup.show(
@@ -27,7 +41,7 @@ class WebAppBar extends StatelessWidget implements PreferredSizeWidget {
                 "Welcome back",
                 "Sign in to continue to Walley",
                 true,
-              )
+              ),
             },
             style: ButtonStyle(
               shape: WidgetStateProperty.all(

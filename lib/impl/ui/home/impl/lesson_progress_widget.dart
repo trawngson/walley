@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:walley/util/user_util.dart';
 import 'package:walley/impl/ui/lessons/lessons_page.dart';
@@ -128,7 +127,7 @@ class _LessonProgressWidgetState extends State<LessonProgressWidget>
                             foregroundColor: scheme.primary,
                             visualDensity: VisualDensity.compact,
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 10),
+                                horizontal: 14, vertical: 10,),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
                             ),

@@ -6,17 +6,17 @@ class Unit1Lesson2 extends StatelessWidget {
   static const int lessonNumber = 2;
 
   @override
-  Widget build(BuildContext context) => _ScaffoldLesson(
+  Widget build(BuildContext context) => const _ScaffoldLesson(
         title: 'UNIT 1 · LESSON 2',
         headline: 'Money Flow Basics',
         color: Colors.orangeAccent,
         lessonNumber: lessonNumber,
-        children: const [
+        children: [
           _Paragraph(
-              'Cash flow is the metabolic system of your financial life. Before you optimize, you must observe: where does money predictably enter, how does it intentionally exit, and which leaks silently siphon momentum? In this lesson we build a living map— not a static spreadsheet— so that every unit of currency gets a clear job. Think in streams, not isolated puddles: salary, freelance bursts, refunds, interest credits— they each possess volatility, timing, and reliability scores. On the outflow side separate structural (rent, insurance, minimum debt service) from variable (food variation, social, micro–impulses). Finally layer aspirational allocations: future self investments, skill upskilling, and optionality reserves. Your first objective is not perfection; it is measurement density. The more days captured consecutively, the sharper your pattern recognition and the calmer your decision frame.'),
+              'Cash flow is the metabolic system of your financial life. Before you optimize, you must observe: where does money predictably enter, how does it intentionally exit, and which leaks silently siphon momentum? In this lesson we build a living map— not a static spreadsheet— so that every unit of currency gets a clear job. Think in streams, not isolated puddles: salary, freelance bursts, refunds, interest credits— they each possess volatility, timing, and reliability scores. On the outflow side separate structural (rent, insurance, minimum debt service) from variable (food variation, social, micro–impulses). Finally layer aspirational allocations: future self investments, skill upskilling, and optionality reserves. Your first objective is not perfection; it is measurement density. The more days captured consecutively, the sharper your pattern recognition and the calmer your decision frame.',),
           _InlineChart(
               description:
-                  '30‑Day Rolling Net Flow (green positive / red negative).'),
+                  '30‑Day Rolling Net Flow (green positive / red negative).',),
           _BulletList([
             'Log DAILY net remainder (income minus outflow) → form a volatility band',
             'Tag each discretionary purchase with an emotion trigger word',
@@ -24,7 +24,7 @@ class Unit1Lesson2 extends StatelessWidget {
             'Redirect surplus immediately to a named goal envelope',
           ]),
           _TipCard('Momentum Hint',
-              'Automation beats heroic willpower. If you have to “decide” each transfer, friction will erode consistency. Script rules once, then supervise.')
+              'Automation beats heroic willpower. If you have to “decide” each transfer, friction will erode consistency. Script rules once, then supervise.',),
         ],
       );
 }
@@ -41,7 +41,7 @@ class _ScaffoldLesson extends StatelessWidget {
       required this.headline,
       required this.color,
       required this.lessonNumber,
-      required this.children});
+      required this.children,});
   @override
   Widget build(BuildContext context) => Scaffold(
         body: SafeArea(
@@ -54,27 +54,27 @@ class _ScaffoldLesson extends StatelessWidget {
                 automaticallyImplyLeading: true,
                 title: Text(headline,
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w600)),
+                        fontSize: 20, fontWeight: FontWeight.w600,),),
                 actions: [
                   IconButton(
                     icon: const Icon(Icons.check_circle_outline),
                     tooltip: 'Mark Complete',
                     onPressed: () async {
                       await UserUtil.updateLessonProgressIfCurrent(
-                          lessonNumber);
+                          lessonNumber,);
                       if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Progress updated')));
+                            const SnackBar(content: Text('Progress updated')),);
                       }
                     },
-                  )
+                  ),
                 ],
               ),
               SliverToBoxAdapter(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 400),
                   padding: EdgeInsets.symmetric(
-                      horizontal: wide ? 80 : 20, vertical: 30),
+                      horizontal: wide ? 80 : 20, vertical: 30,),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -83,13 +83,13 @@ class _ScaffoldLesson extends StatelessWidget {
                                 fontSize: 14,
                                 letterSpacing: 1.2,
                                 fontWeight: FontWeight.w600,
-                                color: color.withOpacity(.65))),
+                                color: color.withOpacity(.65),),),
                         const SizedBox(height: 8),
                         Text(headline,
                             style: TextStyle(
                                 fontSize: 34,
                                 fontWeight: FontWeight.w700,
-                                color: color)),
+                                color: color,),),
                         const SizedBox(height: 24),
                         ...children,
                         const SizedBox(height: 40),
@@ -97,28 +97,28 @@ class _ScaffoldLesson extends StatelessWidget {
                           child: ElevatedButton.icon(
                             onPressed: () async {
                               await UserUtil.updateLessonProgressIfCurrent(
-                                  lessonNumber);
+                                  lessonNumber,);
                               if (context.mounted) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content: Text(
-                                            'Lesson marked as complete.')));
+                                            'Lesson marked as complete.',),),);
                               }
                             },
                             style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 28, vertical: 16),
+                                    horizontal: 28, vertical: 16,),
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18))),
+                                    borderRadius: BorderRadius.circular(18),),),
                             icon: const Icon(Icons.check_rounded),
                             label: const Text('Mark as complete'),
                           ),
-                        )
-                      ]),
+                        ),
+                      ],),
                 ),
-              )
-            ]);
-          }),
+              ),
+            ],);
+          },),
         ),
       );
 }
@@ -135,7 +135,7 @@ class _Paragraph extends StatelessWidget {
               fontSize: 17,
               height: 1.38,
               color:
-                  Theme.of(context).colorScheme.onSurface.withOpacity(.86))));
+                  Theme.of(context).colorScheme.onSurface.withOpacity(.86),),),);
 }
 
 class _BulletList extends StatelessWidget {
@@ -158,7 +158,7 @@ class _BulletList extends StatelessWidget {
                           height: 6,
                           margin: const EdgeInsets.only(top: 7, right: 10),
                           decoration: BoxDecoration(
-                              color: color, shape: BoxShape.circle)),
+                              color: color, shape: BoxShape.circle,),),
                       Expanded(
                           child: Text(line,
                               style: TextStyle(
@@ -167,9 +167,9 @@ class _BulletList extends StatelessWidget {
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onSurface
-                                      .withOpacity(.9))))
-                    ]))
-        ]));
+                                      .withOpacity(.9),),),),
+                    ],),),
+        ],),);
   }
 }
 
@@ -187,23 +187,23 @@ class _TipCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(18),
             gradient: LinearGradient(colors: [
               s.primary.withOpacity(.12),
-              s.primary.withOpacity(.05)
-            ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-            border: Border.all(color: s.primary.withOpacity(.2))),
+              s.primary.withOpacity(.05),
+            ], begin: Alignment.topLeft, end: Alignment.bottomRight,),
+            border: Border.all(color: s.primary.withOpacity(.2)),),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(title,
               style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                   letterSpacing: .8,
-                  color: s.primary)),
+                  color: s.primary,),),
           const SizedBox(height: 6),
           Text(body,
               style: TextStyle(
                   fontSize: 14.5,
                   height: 1.42,
-                  color: s.onSurface.withOpacity(.85)))
-        ]));
+                  color: s.onSurface.withOpacity(.85),),),
+        ],),);
   }
 }
 
@@ -218,7 +218,7 @@ class _InlineChart extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
-            color: c.secondaryContainer.withOpacity(.35)),
+            color: c.secondaryContainer.withOpacity(.35),),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
               height: 90,
@@ -238,17 +238,17 @@ class _InlineChart extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(4),
                                 gradient: LinearGradient(colors: [
                                   c.primary.withOpacity(.85 - h * .4),
-                                  c.primary.withOpacity(.35)
-                                ]),
-                              ))));
-                }));
-              })),
+                                  c.primary.withOpacity(.35),
+                                ],),
+                              ),),),);
+                }),);
+              },),),
           const SizedBox(height: 10),
           Text(description,
               style: TextStyle(
                   fontSize: 12,
                   fontStyle: FontStyle.italic,
-                  color: c.onSecondaryContainer.withOpacity(.75)))
-        ]));
+                  color: c.onSecondaryContainer.withOpacity(.75),),),
+        ],),);
   }
 }

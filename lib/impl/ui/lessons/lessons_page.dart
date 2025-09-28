@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:walley/impl/ui/abstract_walley_page.dart';
 import 'package:walley/impl/ui/lessons/impl/lessons/unit1_lesson2.dart';
-import 'package:walley/impl/ui/lessons/impl/ui/lesson_button.dart';
 import 'package:walley/impl/ui/lessons/impl/lessons/unit1_lesson1.dart';
 import 'package:walley/impl/ui/lessons/impl/lessons/unit_new_lessons.dart';
 import 'package:walley/util/user_util.dart';
+import 'package:walley/impl/ui/shared/section_header.dart';
 
 class LessonsPage extends StatelessWidget implements AbstractWalleyPage {
   const LessonsPage({super.key});
@@ -38,13 +37,15 @@ class LessonsPage extends StatelessWidget implements AbstractWalleyPage {
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              const SectionHeader(icon: Icons.flag_rounded, title: 'Lessons'),
+              const SizedBox(height: 12),
               _unitHeader('UNIT 1', 'Foundations', Icons.flag_rounded,
-                  Colors.redAccent),
+                  Colors.redAccent,),
               const SizedBox(height: 10),
               ..._buildLessonButtons(context, progress, 1, 7),
               const SizedBox(height: 30),
               _unitHeader('UNIT 2', 'Investing', Icons.trending_up_rounded,
-                  Colors.green),
+                  Colors.green,),
               const SizedBox(height: 10),
               ..._buildLessonButtons(context, progress, 8, 12),
               const SizedBox(height: 40),
@@ -72,13 +73,13 @@ class LessonsPage extends StatelessWidget implements AbstractWalleyPage {
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
-                      color: color.withOpacity(0.8))),
+                      color: color.withOpacity(0.8),),),
               Text(title,
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
                       color: color.darken(),
-                      height: 1)),
+                      height: 1,),),
             ],
           ),
           Container(
@@ -95,7 +96,7 @@ class LessonsPage extends StatelessWidget implements AbstractWalleyPage {
   }
 
   List<Widget> _buildLessonButtons(
-      BuildContext context, int progress, int start, int end) {
+      BuildContext context, int progress, int start, int end,) {
     final list = <Widget>[];
     int visualOffset = 0;
     for (final (number, title, destination)
@@ -108,7 +109,7 @@ class LessonsPage extends StatelessWidget implements AbstractWalleyPage {
         destination: destination,
         unlocked: unlocked,
         offset: visualOffset.toDouble(),
-      ));
+      ),);
     }
     return list;
   }
@@ -125,13 +126,13 @@ class _LessonButtonAdaptive extends StatelessWidget {
       required this.title,
       required this.destination,
       required this.unlocked,
-      required this.offset});
+      required this.offset,});
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final bg =
-        unlocked ? scheme.primary.withOpacity(0.15) : scheme.surfaceVariant;
+        unlocked ? scheme.primary.withOpacity(0.15) : scheme.surfaceContainerHighest;
     final fg = unlocked ? scheme.primary : scheme.outline;
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 300),
@@ -159,7 +160,7 @@ class _LessonButtonAdaptive extends StatelessWidget {
                     backgroundColor: fg.withOpacity(0.15),
                     child: Text('$number',
                         style:
-                            TextStyle(color: fg, fontWeight: FontWeight.w600)),
+                            TextStyle(color: fg, fontWeight: FontWeight.w600),),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
@@ -179,7 +180,7 @@ class _LessonButtonAdaptive extends StatelessWidget {
                     Icon(Icons.lock_rounded, color: fg.withOpacity(0.6)),
                 ],
               ),
-            )),
+            ),),
       ),
     );
   }

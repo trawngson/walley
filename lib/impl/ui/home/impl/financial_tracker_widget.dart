@@ -98,7 +98,7 @@ class _FinancialTrackerWidgetState extends State<FinancialTrackerWidget>
                     IconButton(
                       tooltip: 'Refresh',
                       icon: Icon(Icons.refresh_rounded,
-                          color: scheme.onSecondary),
+                          color: scheme.onSecondary,),
                       onPressed: _load,
                     ),
                   ],
@@ -198,7 +198,7 @@ class _Bar extends StatelessWidget {
       required this.max,
       required this.color,
       required this.animationValue,
-      required this.width});
+      required this.width,});
 
   @override
   Widget build(BuildContext context) {
